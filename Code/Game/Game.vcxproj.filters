@@ -79,6 +79,18 @@
     <ClCompile Include="WidgetBase.cpp">
       <Filter>Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="BaseContext.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseFactory.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseStack.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="IState.cpp">
+      <Filter>Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -146,6 +158,18 @@
     </ClInclude>
     <ClInclude Include="WidgetBase.hpp">
       <Filter>Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseContext.hpp">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseFactory.hpp">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseStack.hpp">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="IState.hpp">
+      <Filter>Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
