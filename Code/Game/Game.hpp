@@ -7,9 +7,13 @@
 #include <cstdint>
 #include <vector>
 
+#include "BaseContext.hpp"
+#include "BaseFactory.hpp"
+#include "BaseStack.hpp"
 #include "Sound.hpp"
 #include "Engine/Math/AABB2.hpp"
 
+class BaseContext;
 enum class eDeviceType : int8_t;
 //----------------------------------------------------------------------------------------------------
 class Map;
@@ -65,6 +69,10 @@ private:
     eGameState        m_currentGameState = eGameState::ATTRACT;
     std::vector<Map*> m_maps;
 
-    SoundPlaybackID m_mainMenuPlaybackID;
-    SoundPlaybackID m_inGamePlaybackID;
+    SoundPlaybackID m_mainMenuPlaybackID = 0;
+    SoundPlaybackID m_inGamePlaybackID   = 0;
+
+    BaseContext m_context;
+    BaseFactory m_factory;
+    BaseStack m_stack = BaseStack(nullptr, nullptr);
 };

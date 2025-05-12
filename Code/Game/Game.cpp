@@ -5,6 +5,9 @@
 //----------------------------------------------------------------------------------------------------
 #include "Game/Game.hpp"
 
+#include "BaseContext.hpp"
+#include "BaseFactory.hpp"
+#include "BaseStack.hpp"
 #include "Sound.hpp"
 #include "Engine/Core/Clock.hpp"
 #include "Engine/Core/EngineCommon.hpp"
@@ -60,6 +63,26 @@ Game::Game()
     DebugAddWorldText("Z-Up", transform, 0.25f, Vec2(1.f, 0.f), -1.f, Rgba8::BLUE);
 
     // SoundID mainMenuSoundID = g_theAudio->CreateOrGetSound(g_gameConfigBlackboard.GetValue("Game.Common.Audio.MainMenu", ""));
+
+
+    // 註冊狀態
+    m_factory.Register("MainMenu", []() { return new MainMenuState(); });
+    m_factory.Register("Gameplay", []() { return new GameplayState(); });
+
+    // 建立狀態機
+    m_stack = BaseStack(&m_context, &m_factory);
+
+    // // 使用流程
+    // stack.PushState("MainMenu");
+    // stack.Update(1.0f);
+    //
+    // stack.PushState("Gameplay");
+    // stack.Update(1.0f);
+    //
+    // stack.PopState();
+    // stack.Update(1.0f);
+
+    m_stack.PushState("MainMenu");
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -93,6 +116,8 @@ void Game::Update()
     {
         m_currentMap->Update(gameDeltaSeconds);
     }
+
+    m_stack.Update(1.0f);
 }
 
 //----------------------------------------------------------------------------------------------------
@@ -176,6 +201,20 @@ void Game::UpdateFromKeyBoard()
 {
     if (m_currentGameState == eGameState::ATTRACT)
     {
+if (g_theInput->WasKeyJustPressed(NUMCODE_1))
+{
+    // m_stack.PushState("MainMenu");
+    m_context.RequestPushState("MainMenu");
+}
+
+        if (g_theInput->WasKeyJustPressed(NUMCODE_2))
+        {
+            // m_stack.PushState("Gameplay");
+            m_context.RequestPushState("Gameplay");
+        }
+
+
+
         if (g_theInput->WasKeyJustPressed(KEYCODE_ESC))
         {
             App::RequestQuit();
